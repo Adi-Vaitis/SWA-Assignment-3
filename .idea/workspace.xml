@@ -4,26 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="Created the react app">
-      <change beforePath="$PROJECT_DIR$/match3--web-app/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/public/logo512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/src/reportWebVitals.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3--web-app/src/setupTests.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+    <list default="true" id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="added user service and used when submitting register user information. Next step is to use redux.">
+      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Components/Redirect/Redirect.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/RegisterPage/RegisterPage.state.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/RegisterPage/RegisterPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/RegisterPage/RegisterPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Services/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +26,11 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
     <option name="recentBranches">
@@ -64,6 +57,20 @@
       </RecentBranches>
     </option>
   </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="recentNewPullRequestHead">
+      <RepoCoordinatesHolder>
+        <option name="owner" value="Adi-Vaitis" />
+        <option name="repository" value="SWA-Assignment-3" />
+      </RepoCoordinatesHolder>
+    </option>
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="987ab05f-cfe8-49dd-9936-853ede1a48c9" />
+        <option name="url" value="https://github.com/Adi-Vaitis/SWA-Assignment-3.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -85,7 +92,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/baicoianuionut/Own projects/SWA/SWA-Assignment-3/match3-web-appp/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/baicoianuionut/Own projects/SWA/SWA-Assignment-3/match3-web-app-ts/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -98,7 +105,7 @@
       <option name="presentableId" value="Default" />
       <updated>1698852658924</updated>
       <workItem from="1698852660588" duration="1439000" />
-      <workItem from="1698854796881" duration="2165000" />
+      <workItem from="1698854796881" duration="12245000" />
     </task>
     <task id="LOCAL-00001" summary="Created the react app">
       <created>1698852721555</created>
@@ -107,7 +114,42 @@
       <option name="project" value="LOCAL" />
       <updated>1698852721555</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="create react app and setup a poc of the redux functionality with react">
+      <created>1698857001644</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698857001644</updated>
+    </task>
+    <task id="LOCAL-00003" summary="create react app and setup a poc of the redux functionality with react">
+      <created>1698857057454</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1698857057454</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added react app with typescript">
+      <created>1698857933067</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698857933067</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added login and register pages without redux and any functionality, only design">
+      <created>1698861125547</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1698861125547</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added user service and used when submitting register user information. Next step is to use redux.">
+      <created>1698863524663</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1698863524663</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,6 +157,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created the react app" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created the react app" />
+    <MESSAGE value="create react app and setup a poc of the redux functionality with react" />
+    <MESSAGE value="added react app with typescript" />
+    <MESSAGE value="added login and register pages without redux and any functionality, only design" />
+    <MESSAGE value="added user service and used when submitting register user information. Next step is to use redux." />
+    <option name="LAST_COMMIT_MESSAGE" value="added user service and used when submitting register user information. Next step is to use redux." />
   </component>
 </project>
