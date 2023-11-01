@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="Created the react app">
+      <change beforePath="$PROJECT_DIR$/match3--web-app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3--web-app/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="Ionut" />
+                    <option name="lastUsedInstant" value="1698852868" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1698852867" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Xa221OANvZlNh0rkdxBOYaQRCZ" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/baicoianuionut/Own projects/SWA/SWA-Assignment-3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/baicoianuionut/Own projects/SWA/SWA-Assignment-3/match3-web-appp/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="" />
+      <created>1698852658924</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698852658924</updated>
+      <workItem from="1698852660588" duration="1439000" />
+      <workItem from="1698854796881" duration="2165000" />
+    </task>
+    <task id="LOCAL-00001" summary="Created the react app">
+      <created>1698852721555</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1698852721555</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Created the react app" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created the react app" />
+  </component>
+</project>
