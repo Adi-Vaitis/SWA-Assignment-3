@@ -9,29 +9,24 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {UserService} from "../../Services/user.service";
+import {User} from "../../Model/user";
 
-function Copyright(props: any) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
 
 const defaultTheme = createTheme();
+const userService = new UserService();
 
 export const RegisterPage = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
+        const userToRegister: User = {
+            username: data.get('username') as string,
+            password: data.get('password') as string,
+        };
+
+        // TODO this one should be moved into redux action
+        userService.register(userToRegister).then((receivedBackUser) => {alert(JSON.stringify(receivedBackUser));
         });
     };
 
@@ -57,10 +52,9 @@ export const RegisterPage = () => {
                             margin="normal"
                             required
                             fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
+                            id="username"
+                            label="Username"
+                            name="username"
                             autoFocus
                         />
                         <TextField
