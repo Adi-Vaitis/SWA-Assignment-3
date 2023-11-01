@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="create react app and setup a poc of the redux functionality with react">
+    <list default="true" id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="added react app with typescript">
+      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/RegisterPage/RegisterPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3-web-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3-web-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3-web-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +105,7 @@
       <option name="presentableId" value="Default" />
       <updated>1698852658924</updated>
       <workItem from="1698852660588" duration="1439000" />
-      <workItem from="1698854796881" duration="3063000" />
+      <workItem from="1698854796881" duration="6200000" />
     </task>
     <task id="LOCAL-00001" summary="Created the react app">
       <created>1698852721555</created>
@@ -125,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698857057454</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added react app with typescript">
+      <created>1698857933067</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698857933067</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,6 +144,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created the react app" />
     <MESSAGE value="create react app and setup a poc of the redux functionality with react" />
-    <option name="LAST_COMMIT_MESSAGE" value="create react app and setup a poc of the redux functionality with react" />
+    <MESSAGE value="added react app with typescript" />
+    <option name="LAST_COMMIT_MESSAGE" value="added react app with typescript" />
   </component>
 </project>
