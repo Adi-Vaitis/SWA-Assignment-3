@@ -3,6 +3,7 @@ import {useRoutes} from 'react-router-dom';
 import './App.css';
 import {LoginPage} from "./Pages/LoginPage/LoginPage";
 import {RegisterPage} from "./Pages/RegisterPage/RegisterPage";
+import {Redirect} from "./Components/Redirect/Redirect";
 
 // interface AppStateModel {
 //     count: number;
@@ -52,8 +53,13 @@ import {RegisterPage} from "./Pages/RegisterPage/RegisterPage";
 const App = () => {
   const content = useRoutes(
       [
+          // from / should redirect to /login path
+          {
+                path: "/",
+              element: <Redirect to="/login"/>
+          },
         {
-          path: "",
+          path: "/login",
           element: <LoginPage/>,
         },
           {
