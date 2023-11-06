@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="added user service and used when submitting register user information. Next step is to use redux.">
-      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Components/Redirect/Redirect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/RegisterPage/RegisterPage.state.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.state.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Services/login.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/match3-web-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/RegisterPage/RegisterPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/RegisterPage/RegisterPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Services/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,12 +24,13 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
     <option name="recentBranches">
@@ -75,6 +75,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Xa221OANvZlNh0rkdxBOYaQRCZ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -82,9 +85,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Adrian",
     "last_opened_file_path": "/Users/baicoianuionut/Own projects/SWA/SWA-Assignment-3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -92,7 +97,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/baicoianuionut/Own projects/SWA/SWA-Assignment-3/match3-web-app-ts/node_modules/typescript/lib",
+    "ts.external.directory.path": "D:\\SEM7\\SWA-Assignment-3\\functional\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -156,6 +161,7 @@
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Created the react app" />
     <MESSAGE value="create react app and setup a poc of the redux functionality with react" />
     <MESSAGE value="added react app with typescript" />
