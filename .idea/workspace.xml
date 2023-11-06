@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="added user service and used when submitting register user information. Next step is to use redux.">
-      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.state.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Services/login.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/match3-web-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="added redux functionality for handling the login">
+      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/GamePages/MainPage/MainPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameserver" beforeDir="false" afterPath="$PROJECT_DIR$/gameserver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.state.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.state.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +95,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "ts.external.directory.path": "D:\\SEM7\\SWA-Assignment-3\\functional\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -154,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698863524663</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added redux functionality for handling the login">
+      <option name="closed" value="true" />
+      <created>1699266510871</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1699266510871</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +174,7 @@
     <MESSAGE value="added react app with typescript" />
     <MESSAGE value="added login and register pages without redux and any functionality, only design" />
     <MESSAGE value="added user service and used when submitting register user information. Next step is to use redux." />
-    <option name="LAST_COMMIT_MESSAGE" value="added user service and used when submitting register user information. Next step is to use redux." />
+    <MESSAGE value="added redux functionality for handling the login" />
+    <option name="LAST_COMMIT_MESSAGE" value="added redux functionality for handling the login" />
   </component>
 </project>

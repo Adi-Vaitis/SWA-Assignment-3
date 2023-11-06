@@ -56,7 +56,7 @@ export const fetchLogin = (dispatch: any, user: User) => {
         .then(returnedLoggedInUser => {
             alert('User has been logged in successfully!');
             dispatch({type: ActionTypes.LOGIN_SUCCESS, payload: returnedLoggedInUser});
-            window.location.href = '/';
+            window.location.href = '/mainPage';
         })
         .catch(error => {
             alert('Error: ' + error.message);

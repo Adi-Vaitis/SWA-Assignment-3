@@ -4,6 +4,7 @@ import './App.css';
 import {LoginPage} from "./Pages/LoginPage/LoginPage";
 import {RegisterPage} from "./Pages/RegisterPage/RegisterPage";
 import {Redirect} from "./Components/Redirect/Redirect";
+import {MainPageComponent} from "./Pages/GamePages/MainPage/MainPage";
 
 // interface AppStateModel {
 //     count: number;
@@ -65,6 +66,10 @@ const App = () => {
           {
               path: "/register",
               element: <RegisterPage/>
+          },
+          {
+              path: "/mainPage",
+              element: <MainPageComponent/>
           }
       ]
   );
