@@ -8,11 +8,11 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 
 const defaultTheme = createTheme();
 
-export const MainPageComponent = () => {
+export const ProfilePageComponent = () => {
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
@@ -26,15 +26,11 @@ export const MainPageComponent = () => {
                     }}
                 >
                     <Typography component="h1" variant="h5">
-                        Main Page
+                        Profile Page
                     </Typography>
-                    <Link href="/profile">
-                        <Button variant="contained" color="primary">
-                            Profile
-                        </Button>
-                    </Link>
                 </Box>
             </Container>
         </ThemeProvider>
     )
 }
+

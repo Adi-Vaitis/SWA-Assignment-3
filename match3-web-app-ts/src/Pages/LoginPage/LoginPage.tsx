@@ -111,3 +111,5 @@ export const LoginPage = () => {
         </Provider>
     );
 }
+
+//TODO: The user can manually change the URL and go to another page without being logged in. Tried to work on that but no success yet.

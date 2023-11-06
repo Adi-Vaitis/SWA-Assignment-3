@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="added redux functionality for handling the login">
-      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/GamePages/MainPage/MainPage.tsx" afterDir="false" />
+    <list default="true" id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="login works and redirects the user to a main page if the answer is successful">
+      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/GamePages/ProfilePage/ProfilePage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameserver" beforeDir="false" afterPath="$PROJECT_DIR$/gameserver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.state.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.state.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699266510871</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="login works and redirects the user to a main page if the answer is successful">
+      <option name="closed" value="true" />
+      <created>1699268959687</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1699268959687</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,6 +181,7 @@
     <MESSAGE value="added login and register pages without redux and any functionality, only design" />
     <MESSAGE value="added user service and used when submitting register user information. Next step is to use redux." />
     <MESSAGE value="added redux functionality for handling the login" />
-    <option name="LAST_COMMIT_MESSAGE" value="added redux functionality for handling the login" />
+    <MESSAGE value="login works and redirects the user to a main page if the answer is successful" />
+    <option name="LAST_COMMIT_MESSAGE" value="login works and redirects the user to a main page if the answer is successful" />
   </component>
 </project>
