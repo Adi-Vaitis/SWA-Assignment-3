@@ -14,7 +14,7 @@ const App = () => {
   const content = useRoutes(
       [
           {
-              element: <LayoutComponent></LayoutComponent>,
+              element: <LayoutComponent token={token}></LayoutComponent>,
               children: [
                   {
                       path: "/",
