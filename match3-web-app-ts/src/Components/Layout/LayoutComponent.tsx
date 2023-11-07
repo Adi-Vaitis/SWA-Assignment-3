@@ -1,9 +1,9 @@
 import {Layout, Menu, theme} from "antd";
 import {Content, Header} from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
-import {HomeOutlined, UserOutlined, LogoutOutlined} from '@ant-design/icons';
+import {HomeOutlined, LogoutOutlined, UserOutlined} from '@ant-design/icons';
 import React, {useState} from "react";
-import {Outlet} from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 import {MenuProps} from "antd/lib";
 import {handleMenuRouting} from "../../constants";
 
@@ -32,9 +32,11 @@ export const LayoutComponent = ({token}: any) => {
         token: {colorBgContainer},
     } = theme.useToken();
 
+    const navigate = useNavigate();
+
     const onClick: MenuProps['onClick'] = (e) => {
         setCurrent(e.key);
-        handleMenuRouting(e.key);
+        handleMenuRouting(e.key, navigate);
     };
 
     return (
@@ -50,6 +52,7 @@ export const LayoutComponent = ({token}: any) => {
                         style={{height: '100%', borderRight: 0}}
                         onClick={onClick}
                         selectedKeys={[current]}
+                        selectable={true}
                         items={navigationItems}
                     />
                 </Sider>}

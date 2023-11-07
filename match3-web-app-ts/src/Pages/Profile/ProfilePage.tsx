@@ -15,7 +15,7 @@ const ProfileComponent = ({token, isFetching, user, fetchUser}: any) => {
         return (
             <>
                 {user && (
-                    <Card title="Profile" extra={<a href="#">More</a>} style={{width: 300, height: 400}}>
+                    <Card title="Profile" style={{width: 300, height: 400}}>
                         <p>Username: {user.username}</p>
                         <p>Admin: {user.admin ? 'Yes' : 'No'}</p>
                     </Card>)}
@@ -37,8 +37,6 @@ const ReduxProfilePageContainer = connect(profileMapStateToProps, profileMapDisp
 const store = createStore(profileReducer);
 
 export const ProfilePage = ({token}: any) => {
-
-    console.log(token);
     return (
         <Provider store={store}>
             <ReduxProfilePageContainer token={token} userId={token.userId}/>
