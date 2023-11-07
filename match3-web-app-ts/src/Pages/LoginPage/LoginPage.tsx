@@ -14,7 +14,6 @@ import {connect, Provider} from "react-redux";
 import {mapDispatchToProps, mapStateToProps, loginPageReducer} from "./LoginPage.state";
 import {createStore} from "redux";
 import CircularProgress from "@mui/material/CircularProgress";
-import {fetchLogin} from "./LoginPage.state.js";
 
 const defaultTheme = createTheme();
 
