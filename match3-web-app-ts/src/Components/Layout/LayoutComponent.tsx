@@ -5,13 +5,14 @@ import {HomeOutlined, UserOutlined, LogoutOutlined} from '@ant-design/icons';
 import React, {useState} from "react";
 import {Outlet} from "react-router-dom";
 import {MenuProps} from "antd/lib";
+import {handleMenuRouting} from "../../constants";
 
 export const LayoutComponent = ({token}: any) => {
-    const [current, setCurrent] = useState('home');
+    const [current, setCurrent] = useState('mainPage');
 
     const navigationItems: MenuProps['items'] = [
         {
-            key: 'home',
+            key: 'mainPage',
             icon: React.createElement(HomeOutlined),
             label: 'Home',
         },
@@ -33,10 +34,7 @@ export const LayoutComponent = ({token}: any) => {
 
     const onClick: MenuProps['onClick'] = (e) => {
         setCurrent(e.key);
-        if (e.key === 'logout') {
-            localStorage.removeItem('token');
-            window.location.reload();
-        }
+        handleMenuRouting(e.key);
     };
 
     return (
@@ -55,7 +53,7 @@ export const LayoutComponent = ({token}: any) => {
                         items={navigationItems}
                     />
                 </Sider>}
-                <Layout style={{padding: '24px'}}>
+                <Layout style={{padding: '24px', height: '89vh'}}>
                     <Content
                         style={{
                             padding: 24,
