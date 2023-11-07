@@ -1,17 +1,11 @@
-export const handleMenuRouting = (key: string) => {
+export const handleMenuRouting = (key: string, navigate: (path: string) => void) => {
     switch (key) {
         case 'logout':
             localStorage.removeItem('token');
             window.location.reload();
             break;
-        case 'login':
-            window.location.href = '/login';
-            break;
-        case 'mainPage' :
-            window.location.href = '/mainPage';
-            break;
-        case 'profile':
-            window.location.href = '/profile';
-            break;
+        // just routing to the desired key, if there is nothing else to do
+        default:
+            navigate(`/${key}`);
     }
-}
+};
