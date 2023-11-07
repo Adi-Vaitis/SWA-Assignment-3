@@ -8,13 +8,15 @@ import {MainPageComponent} from "./Pages/GamePages/MainPage/MainPage";
 import {Token} from "./Model/token";
 import {AuthGuard} from "./Components/AuthGuard/AuthGuard";
 import {LayoutComponent} from "./Components/Layout/LayoutComponent";
+import {FourOhFour} from "./Pages/Four-Oh-Four/Four-Oh-Four";
+import {ProfilePage} from "./Pages/Profile/ProfilePage";
 
 const App = () => {
     const token: Token = JSON.parse(localStorage.getItem('token') as string) as Token;
   const content = useRoutes(
       [
           {
-              element: <LayoutComponent></LayoutComponent>,
+              element: <LayoutComponent token={token}></LayoutComponent>,
               children: [
                   {
                       path: "/",
@@ -31,6 +33,14 @@ const App = () => {
                   {
                       path: "/mainPage",
                       element: <AuthGuard token={token}><MainPageComponent/></AuthGuard>
+                  },
+                  {
+                      path: "/profile",
+                      element: <AuthGuard token={token}><ProfilePage token={token}/></AuthGuard>
+                  },
+                  {
+                        path: "*",
+                        element: <FourOhFour/>,
                   }
               ]
           }
