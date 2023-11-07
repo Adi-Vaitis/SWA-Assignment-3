@@ -2,21 +2,21 @@
 import {User} from "../../Model/user";
 import {UserService} from "../../Services/user.service";
 
-export interface RegisterPage {
+export interface RegisterStateModel {
     isFetching: boolean;
 }
 
-export const defaultRegisterPage: RegisterPage = {
+export const defaultRegisterPage: RegisterStateModel = {
     isFetching: false,
 }
 
-export enum ActionTypes {
+enum ActionTypes {
     REGISTER_REQUEST = "REGISTER_REQUEST",
     REGISTER_SUCCESS = "REGISTER_SUCCESS",
     REGISTER_FAILURE = "REGISTER_FAILURE",
 }
 
-export const registerPageReducer = function (state: RegisterPage = defaultRegisterPage, action: any) {
+export const registerPageReducer = function (state: RegisterStateModel = defaultRegisterPage, action: any) {
     switch (action.type) {
         case ActionTypes.REGISTER_REQUEST:
             return {
@@ -38,16 +38,15 @@ export const registerPageReducer = function (state: RegisterPage = defaultRegist
     }
 }
 
-export const mapStateToProps = function (state: RegisterPage) {
+export const mapStateToProps = function (state: RegisterStateModel) {
     return {
         isFetching: state.isFetching
     }
 }
 
 const fetchRegister = (dispatch: any, user: User) => {
-    const userService = new UserService();
     dispatch({type: ActionTypes.REGISTER_REQUEST});
-    return userService.register(user)
+    return UserService.register(user)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
