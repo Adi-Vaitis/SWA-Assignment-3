@@ -3,8 +3,8 @@ import {User} from "../Model/user";
 export class UserService {
 
     constructor() {
-
     }
+
     async register(user: User) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -19,5 +19,18 @@ export class UserService {
         } satisfies RequestInit;
 
         return fetch("http://localhost:9090/users", requestOptions);
+    }
+
+    async getUser(userId: number) {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        } satisfies RequestInit;
+
+        return fetch(`http://localhost:9090/users/${userId}`, requestOptions);
     }
 }
