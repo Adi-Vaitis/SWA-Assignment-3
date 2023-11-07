@@ -1,11 +1,8 @@
 import {User} from "../Model/user";
-import {LocalStorageService} from "./localStorage.service";
 
 export class UserService {
 
-    private localStorageService: LocalStorageService;
     constructor() {
-        this.localStorageService = new LocalStorageService();
     }
 
     async register(user: User) {
@@ -35,9 +32,5 @@ export class UserService {
         } satisfies RequestInit;
 
         return fetch(`http://localhost:9090/users/${userId}`, requestOptions);
-    }
-
-    isLoggedIn(): boolean {
-        return this.localStorageService.get("user") != null;
     }
 }
