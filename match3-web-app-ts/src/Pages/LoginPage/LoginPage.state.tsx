@@ -1,5 +1,6 @@
 import {User} from "../../Model/user";
 import {LoginService} from "../../Services/login.service";
+import {Token} from "../../Model/token";
 
 export interface LoginPage {
     isFetching: boolean;
@@ -53,9 +54,11 @@ export const fetchLogin = (dispatch: any, user: User) => {
             }
             return response.json();
         })
-        .then(returnedLoggedInUser => {
+        .then((returnedLoggedInUser: Token) => {
             alert('User has been logged in successfully!');
             dispatch({type: ActionTypes.LOGIN_SUCCESS, payload: returnedLoggedInUser});
+            // save token
+            localStorage.setItem('token', JSON.stringify(returnedLoggedInUser));
             window.location.href = '/mainPage';
         })
         .catch(error => {

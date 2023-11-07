@@ -5,6 +5,8 @@ import {LoginPage} from "./Pages/LoginPage/LoginPage";
 import {RegisterPage} from "./Pages/RegisterPage/RegisterPage";
 import {Redirect} from "./Components/Redirect/Redirect";
 import {MainPageComponent} from "./Pages/GamePages/MainPage/MainPage";
+import {Token} from "./Model/token";
+import {AuthGuard} from "./Components/AuthGuard/AuthGuard";
 
 // interface AppStateModel {
 //     count: number;
@@ -52,6 +54,7 @@ import {MainPageComponent} from "./Pages/GamePages/MainPage/MainPage";
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 // const store = createStore(countReducer);
 const App = () => {
+    const token: Token = JSON.parse(localStorage.getItem('token') as string) as Token;
   const content = useRoutes(
       [
           // from / should redirect to /login path
@@ -61,15 +64,15 @@ const App = () => {
           },
         {
           path: "/login",
-          element: <LoginPage/>,
+          element: token ? <Redirect to="/mainPage"/> : <LoginPage/>,
         },
           {
               path: "/register",
-              element: <RegisterPage/>
+              element: token ? <Redirect to="/mainPage"/> : <RegisterPage/>,
           },
           {
               path: "/mainPage",
-              element: <MainPageComponent/>
+              element: <AuthGuard token={token}><MainPageComponent/></AuthGuard>
           }
       ]
   );
