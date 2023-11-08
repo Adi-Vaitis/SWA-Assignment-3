@@ -1,6 +1,6 @@
 import {User} from "../../Model/user";
-import {LoginService} from "../../Services/login.service";
 import {Token} from "../../Model/token";
+import {LoginService} from "../../Api/login.service";
 
 export interface LoginPage {
     isFetching: boolean;

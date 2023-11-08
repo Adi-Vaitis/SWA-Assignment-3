@@ -1,6 +1,6 @@
 // redux setup
 import {User} from "../../Model/user";
-import {UserService} from "../../Services/user.service";
+import {UserService} from "../../Api/user.service";
 
 export interface RegisterStateModel {
     isFetching: boolean;

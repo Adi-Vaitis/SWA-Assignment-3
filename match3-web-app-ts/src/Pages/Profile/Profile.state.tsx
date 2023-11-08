@@ -1,6 +1,6 @@
 import {User} from "../../Model/user";
-import {UserService} from "../../Services/user.service";
 import {Token} from "../../Model/token";
+import {UserService} from "../../Api/user.service";
 
 export interface ProfileStateModel {
     isFetching: boolean;

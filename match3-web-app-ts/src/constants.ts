@@ -6,6 +6,7 @@ export const handleMenuRouting = (key: string, navigate: (path: string) => void)
             break;
         // just routing to the desired key, if there is nothing else to do
         default:
+            
             navigate(`/${key}`);
     }
 };
