@@ -28,11 +28,6 @@ export const MainPageComponent = () => {
                     <Typography component="h1" variant="h5">
                         Main Page
                     </Typography>
-                    <Link href="/profile">
-                        <Button variant="contained" color="primary">
-                            Profile
-                        </Button>
-                    </Link>
                 </Box>
             </Container>
         </ThemeProvider>

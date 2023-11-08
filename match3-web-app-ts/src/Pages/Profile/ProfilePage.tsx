@@ -1,15 +1,35 @@
-import {useEffect} from 'react';
-import {Card, Space} from "antd";
+import {useEffect, useState} from 'react';
+import {Card, Input, Space} from "antd";
 import {connect, Provider} from "react-redux";
 import {profileMapDispatchToProps, profileMapStateToProps, profileReducer} from "./Profile.state";
 import {createStore} from "redux";
 import {Token} from "../../Model/token";
 import './ProfilePage.css';
-const ProfileComponent = ({token, isFetching, user, fetchUser}: any) => {
+import { Button } from 'antd';
+const ProfileComponent = ({token, isFetching, user, fetchUser, updateUserProfile}: any) => {
+
+    const [password, setPassword] = useState('');
 
     useEffect(() => {
-        fetchUser((token as Token).userId);
-    }, [])
+        fetchUser(token);
+    }, []);
+
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value);
+    };
+
+    const handleProfileUpdate = () => {
+        const profileUpdates: { password?: string } = {};
+
+
+        if (password) {
+            profileUpdates.password = password;
+        }
+
+        updateUserProfile(profileUpdates);
+
+    };
+
 
     const showUserInformation = () => {
         return (
@@ -22,6 +42,21 @@ const ProfileComponent = ({token, isFetching, user, fetchUser}: any) => {
                 {!user && (
                     <div>User could not be found, you need to login again.</div>
                     )}
+                <div>
+                    <Input.Password
+                        placeholder="Change Password"
+                        value={password}
+                        onChange={handlePasswordChange}
+                    />
+                    <Button
+                        type="primary"
+                        htmlType="button"
+                        onClick={handleProfileUpdate}
+                    >
+                        Change
+                    </Button>
+
+                </div>
             </>
         )
     }

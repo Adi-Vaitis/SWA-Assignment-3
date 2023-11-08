@@ -5,7 +5,6 @@ import {LoginPage} from "./Pages/LoginPage/LoginPage";
 import {RegisterPage} from "./Pages/RegisterPage/RegisterPage";
 import {Redirect} from "./Components/Redirect/Redirect";
 import {MainPageComponent} from "./Pages/GamePages/MainPage/MainPage";
-import {ProfilePageComponent} from "./Pages/GamePages/ProfilePage/ProfilePage";
 import {Token} from "./Model/token";
 import {AuthGuard} from "./Components/AuthGuard/AuthGuard";
 import {LayoutComponent} from "./Components/Layout/LayoutComponent";
