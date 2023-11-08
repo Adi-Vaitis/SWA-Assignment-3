@@ -48,6 +48,24 @@ export const profileMapStateToProps = function (state: ProfileStateModel) {
     }
 }
 
+export const updateUserProfile = async (dispatch: any, token: Token, profileUpdates: {password?: string }) => {
+    dispatch({ type: ActionTypes.USER_REQUEST });
+
+    try {
+        const response = await UserService.updateUserProfile(token, profileUpdates);
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const returnedUser = await response.json();
+        dispatch({ type: ActionTypes.USER_SUCCESS, payload: returnedUser });
+    } catch (error) {
+        dispatch({ type: ActionTypes.USER_FAILURE });
+    }
+};
+
+
 const fetchUser = (dispatch: any, token: Token) => {
     dispatch({type: ActionTypes.USER_REQUEST});
     UserService.getUser(token).then(response => {
@@ -67,5 +85,6 @@ const fetchUser = (dispatch: any, token: Token) => {
 export const profileMapDispatchToProps = (dispatch: any, token: Token) => {
     return {
         fetchUser: () => fetchUser(dispatch, token),
+        updateUserProfile: (profileUpdates: {password?: string }) => updateUserProfile(dispatch, token, profileUpdates),
     }
 }

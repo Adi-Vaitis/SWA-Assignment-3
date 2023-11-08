@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="added redux functionality for handling the login">
-      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/GamePages/MainPage/MainPage.tsx" afterDir="false" />
+    <list default="true" id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="added the profile page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameserver" beforeDir="false" afterPath="$PROJECT_DIR$/gameserver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameserver/data/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/gameserver/data/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.state.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.state.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/GamePages/MainPage/MainPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/GamePages/MainPage/MainPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/GamePages/ProfilePage/ProfilePage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/Profile/Profile.state.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/Profile/Profile.state.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/Profile/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/Profile/ProfilePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Services/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,24 +87,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Adrian",
-    "last_opened_file_path": "/Users/baicoianuionut/Own projects/SWA/SWA-Assignment-3",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "ts.external.directory.path": "D:\\SEM7\\SWA-Assignment-3\\functional\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Adrian&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/baicoianuionut/Own projects/SWA/SWA-Assignment-3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\SEM7\\SWA-Assignment-3\\functional\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -161,7 +166,23 @@
       <option name="project" value="LOCAL" />
       <updated>1699266510871</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="login works and redirects the user to a main page if the answer is successful">
+      <option name="closed" value="true" />
+      <created>1699268959687</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1699268959687</updated>
+    </task>
+    <task id="LOCAL-00009" summary="added the profile page">
+      <option name="closed" value="true" />
+      <created>1699270320185</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1699270320185</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,6 +196,8 @@
     <MESSAGE value="added login and register pages without redux and any functionality, only design" />
     <MESSAGE value="added user service and used when submitting register user information. Next step is to use redux." />
     <MESSAGE value="added redux functionality for handling the login" />
-    <option name="LAST_COMMIT_MESSAGE" value="added redux functionality for handling the login" />
+    <MESSAGE value="login works and redirects the user to a main page if the answer is successful" />
+    <MESSAGE value="added the profile page" />
+    <option name="LAST_COMMIT_MESSAGE" value="added the profile page" />
   </component>
 </project>

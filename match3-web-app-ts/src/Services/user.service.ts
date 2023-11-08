@@ -40,4 +40,30 @@ export class UserService {
 
         return fetch(apiUrl.toString(), requestOptions);
     }
+
+    static async updateUserProfile(token: Token, profileUpdates: {password?: string }) {
+        const apiUrl = new URL(`${this.PATH}/users/${token.userId}`);
+
+        if (token) {
+            apiUrl.searchParams.append('token', token.token.token);
+        }
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const requestBody = JSON.stringify({
+            password: profileUpdates.password,
+        });
+
+        var requestOptions = {
+            method: 'PATCH',
+            headers: myHeaders,
+            body: requestBody,
+            redirect: 'follow',
+        } satisfies RequestInit;
+
+        return fetch(apiUrl.toString(), requestOptions);
+    }
+
+
 }
