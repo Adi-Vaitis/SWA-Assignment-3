@@ -1,5 +1,8 @@
 export interface Token {
     // userId
-    id: number;
-    token: string;
+    userId: number;
+    token: {
+        userId: number;
+        token: string;
+    };
 }

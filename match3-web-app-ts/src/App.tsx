@@ -8,79 +8,46 @@ import {MainPageComponent} from "./Pages/GamePages/MainPage/MainPage";
 import {ProfilePageComponent} from "./Pages/GamePages/ProfilePage/ProfilePage";
 import {Token} from "./Model/token";
 import {AuthGuard} from "./Components/AuthGuard/AuthGuard";
+import {LayoutComponent} from "./Components/Layout/LayoutComponent";
+import {FourOhFour} from "./Pages/Four-Oh-Four/Four-Oh-Four";
+import {ProfilePage} from "./Pages/Profile/ProfilePage";
 
-// interface AppStateModel {
-//     count: number;
-// }
-// const countReducer = function(state: AppStateModel = defaultAppStateModel, action: any) {
-//   switch (action.type) {
-//     case "ADD" :
-//       return {...state,
-//         count: state.count + 1,
-//       };
-//     case "SUBTRACT" :
-//       return {...state,
-//         count: state.count - 1,
-//       };
-//     default:
-//       return state;
-//   }
-// }
-//
-// const defaultAppStateModel: AppStateModel = {
-//   count: 0,
-// }
-//
-// const mapStateToProps = function(state: AppStateModel) {
-//   return {
-//     count: state.count
-//   }
-// }
-//
-// const mapDispatchToProps = function(dispatch : any) {
-//   return {
-//     add: () => dispatch({type: "ADD"}),
-//     subtract: () => dispatch({type: "SUBTRACT"})
-//   }
-// }
-//
-// const Component = ({count, add, subtract} : any) => {
-//   return (<>
-//     <h1>Count = {count}</h1>
-//     <button onClick={add}>Add</button>
-//     <button onClick={subtract}>Subtract</button>
-//   </>)
-// }
-//
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
-// const store = createStore(countReducer);
 const App = () => {
     const token: Token = JSON.parse(localStorage.getItem('token') as string) as Token;
   const content = useRoutes(
       [
-          // from / should redirect to /login path
           {
-                path: "/",
-              element: <Redirect to="/login"/>
-          },
-        {
-          path: "/login",
-          element: token ? <Redirect to="/mainPage"/> : <LoginPage/>,
-        },
-          {
-              path: "/register",
-              element: token ? <Redirect to="/mainPage"/> : <RegisterPage/>,
-          },
-          {
-              path: "/mainPage",
-              element: <AuthGuard token={token}><MainPageComponent/></AuthGuard>
+              element: <LayoutComponent token={token}></LayoutComponent>,
+              children: [
+                  {
+                      path: "/",
+                      element: <Redirect to="/login"/>,
+                  },
+                  {
+                      path: "/login",
+                      element: token ? <Redirect to="/mainPage"/> : <LoginPage/>,
+                  },
+                  {
+                      path: "/register",
+                      element: token ? <Redirect to="/mainPage"/> : <RegisterPage/>,
+                  },
+                  {
+                      path: "/mainPage",
+                      element: <AuthGuard token={token}><MainPageComponent/></AuthGuard>
+                  },
+                  {
+                      path: "/profile",
+                      element: <AuthGuard token={token}><ProfilePage token={token}/></AuthGuard>
+                  },
+                  {
+                        path: "*",
+                        element: <FourOhFour/>,
+                  }
+              ]
           }
       ]
   );
     return content;
-      // <Provider store={store}>
-      //   <Container/>
-      // </Provider>
 }
 
 export default App;

@@ -1,11 +1,13 @@
 import {User} from "../Model/user";
+import {Token} from "../Model/token";
 
 export class UserService {
+    private static PATH: string = 'http://localhost:9090';
 
     constructor() {
     }
 
-    async register(user: User) {
+    static async register(user: User) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -18,19 +20,24 @@ export class UserService {
             redirect: 'follow'
         } satisfies RequestInit;
 
-        return fetch("http://localhost:9090/users", requestOptions);
+        return fetch(`${this.PATH}/users`, requestOptions);
     }
 
-    async getUser(userId: number) {
+    static async getUser(token: Token) {
+        const apiUrl = new URL(`${this.PATH}/users/${token.userId}`);
+        if (token) {
+            apiUrl.searchParams.append('token', token.token.token);
+        }
+
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
         var requestOptions = {
             method: 'GET',
             headers: myHeaders,
-            redirect: 'follow'
+            redirect: 'follow',
         } satisfies RequestInit;
 
-        return fetch(`http://localhost:9090/users/${userId}`, requestOptions);
+        return fetch(apiUrl.toString(), requestOptions);
     }
 }
