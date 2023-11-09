@@ -4,14 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="Added functionality for changing the password of an account">
+    <list default="true" id="2b7bd983-b440-40dc-bd8b-dc6d84d666f5" name="Changes" comment="Readded the oo from Assignment 2">
+      <change afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Model/game.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameserver" beforeDir="false" afterPath="$PROJECT_DIR$/gameserver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Api/login.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Api/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Api/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.state.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.state.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/match3-web-app-ts/src/Pages/LoginPage/LoginPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -181,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699442032133</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Readded the oo from Assignment 2">
+      <option name="closed" value="true" />
+      <created>1699444337137</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1699444337137</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +217,7 @@
     <MESSAGE value="login works and redirects the user to a main page if the answer is successful" />
     <MESSAGE value="added the profile page" />
     <MESSAGE value="Added functionality for changing the password of an account" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added functionality for changing the password of an account" />
+    <MESSAGE value="Readded the oo from Assignment 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Readded the oo from Assignment 2" />
   </component>
 </project>

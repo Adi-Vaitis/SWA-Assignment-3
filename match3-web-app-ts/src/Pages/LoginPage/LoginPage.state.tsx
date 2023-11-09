@@ -1,6 +1,6 @@
 import {User} from "../../Model/user";
 import {Token} from "../../Model/token";
-import {LoginService} from "../../Api/login.service";
+import {UserService} from "../../Api/user.service";
 
 export interface LoginPage {
     isFetching: boolean;
@@ -45,9 +45,8 @@ export const mapStateToProps = function (state: LoginPage) {
 }
 
 export const fetchLogin = (dispatch: any, user: User) => {
-    const loginService = new LoginService();
     dispatch({type: ActionTypes.LOGIN_REQUEST});
-    return loginService.login(user)
+    return UserService.login(user)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
