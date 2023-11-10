@@ -1,5 +1,6 @@
 import React from "react";
 import './BoardItem.css';
+import * as Board from "../../Model/board";
 
 export interface BoardItemProps {
     image: string;
@@ -14,12 +15,8 @@ export const BoardItem = (props: BoardItemProps) => {
         }} src={require(`../../Assets/BoardImages/${props.image}`)}/>;
     }
 
-    const onClickEvent = (event: any) => {
-        event.preventDefault();
-    }
-
     return (
-        <div onClick={onClickEvent} style={{}} className="board-item-container">
+        <div className="board-item-container">
             {getImage()}
         </div>
     )

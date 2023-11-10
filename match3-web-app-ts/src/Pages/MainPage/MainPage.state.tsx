@@ -128,7 +128,6 @@ function fetchInitialBoardGame(dispatch: any, token: Token) {
     });
 }
 
-// TODO not used for now
 function updateMoveOnBoard(dispatch: any, selectedPosition: Board.Position, newPosition: Board.Position, currentState: MainPageState) {
     dispatch({type: ActionTypes.FETCHING});
 
