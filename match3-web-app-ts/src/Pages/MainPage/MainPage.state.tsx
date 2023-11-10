@@ -1,9 +1,9 @@
 import {Game} from "../../Model/game";
 import * as Board from '../../Model/board';
+import {Effect, MoveResult} from '../../Model/board';
 import {Token} from "../../Model/token";
 import {GameService} from "../../Api/game.service";
 import {RandomGenerator} from "../../Model/randomGenerator";
-import {Effect, MoveResult} from "../../Model/board";
 
 export interface MainPageState {
     isFetching: boolean;
@@ -31,7 +31,7 @@ export const defaultMainPageState: MainPageState = {
 enum ActionTypes {
     FETCHING = "FETCHING",
     FINISHED_FETCHING = "FINISHED_FETCHING",
-    FETCH_INITIAL_BOARD_GAME = "GAME_REQUEST",
+    FETCH_INITIAL_BOARD_GAME = "FETCH_INITIAL_BOARD_GAME",
     UPDATE_MOVE_ON_BOARD = "UPDATE_MOVE_ON_BOARD",
     UPDATE_GAME = "UPDATE_GAME",
     FETCH_PREVIOUS_GAME = "FETCH_PREVIOUS_GAME",
@@ -53,8 +53,11 @@ export const mainPageReducer = function (state: MainPageState = defaultMainPageS
         case ActionTypes.FETCH_INITIAL_BOARD_GAME:
             return {
                 ...state,
-                board: action.payload.board,
+                board: {
+                    ...action.payload.board
+                },
                 gameId: action.payload.gameId,
+                currentMoveNumber: 0,
             };
         case ActionTypes.UPDATE_MOVE_ON_BOARD:
             return {
@@ -85,20 +88,22 @@ export const mainPageReducer = function (state: MainPageState = defaultMainPageS
 
 export const mainPageMapStateToProps = function (state: MainPageState) {
     return {
-        isFetching: state.isFetching,
-        board: state.board,
-        score: state.score,
-        gameId: state.gameId,
-        completed: state.completed,
-        currentMoveNumber: state.currentMoveNumber,
-        maxMoveNumber: state.maxMoveNumber,
-        games: state.games,
+        game: {
+            isFetching: state.isFetching,
+            board: state.board,
+            score: state.score,
+            gameId: state.gameId,
+            completed: state.completed,
+            currentMoveNumber: state.currentMoveNumber,
+            maxMoveNumber: state.maxMoveNumber,
+            games: state.games,
+        }
     }
 }
 
 // functions that displays actions
 function fetchInitialBoardGame(dispatch: any, token: Token) {
-    dispatch({ type: ActionTypes.FETCHING });
+    dispatch({type: ActionTypes.FETCHING});
     let game: Game;
     GameService.createGame(token).then(
         response => {
@@ -116,16 +121,16 @@ function fetchInitialBoardGame(dispatch: any, token: Token) {
                 gameId: game.id,
             }
         });
-        dispatch({ type: ActionTypes.FINISHED_FETCHING });
+        dispatch({type: ActionTypes.FINISHED_FETCHING});
     }).catch((error: any) => {
         alert('Error: ' + error.message);
-        dispatch({ type: ActionTypes.FINISHED_FETCHING });
+        dispatch({type: ActionTypes.FINISHED_FETCHING});
     });
 }
 
 // TODO not used for now
 function updateMoveOnBoard(dispatch: any, selectedPosition: Board.Position, newPosition: Board.Position, currentState: MainPageState) {
-    dispatch({ type: ActionTypes.FETCHING });
+    dispatch({type: ActionTypes.FETCHING});
 
     try {
         let resultAfterMove: MoveResult<string> = Board.move(RandomGenerator.getInstance(), currentState.board, selectedPosition, newPosition);
@@ -143,10 +148,10 @@ function updateMoveOnBoard(dispatch: any, selectedPosition: Board.Position, newP
                 }
             });
         }
-        dispatch({ type: ActionTypes.FINISHED_FETCHING });
+        dispatch({type: ActionTypes.FINISHED_FETCHING});
     } catch (error: any) {
         alert('Error: ' + error.message);
-        dispatch({ type: ActionTypes.FINISHED_FETCHING });
+        dispatch({type: ActionTypes.FINISHED_FETCHING});
     }
 }
 

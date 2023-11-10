@@ -14,10 +14,10 @@ const defaultTheme = createTheme();
 
 const MainPageComponent = ({
                                token,
-                               isFetching, board, score, gameId, completed, currentMoveNumber, maxMoveNumber, games,
-                               fetchInitialBoardGame, updateMoveOnBoard
+                               game,
+                               fetchInitialBoardGame,
+                               updateMoveOnBoard,
                            }: any) => {
-
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
@@ -33,21 +33,27 @@ const MainPageComponent = ({
                     <Typography component="h1" variant="h5">
                         Main Page
                     </Typography>
-                    {gameId && (
-                        <BoardComponent board={board} gameId={gameId}></BoardComponent>
+                    {game.gameId && (
+                        <BoardComponent
+                            board={game.board}
+                            gameId={game.gameId}
+                        ></BoardComponent>
                     )}
                     <div>
-                        <Button onClick={() => {
-                            fetchInitialBoardGame(token);
-                        }}>
+                        <Button
+                            onClick={() => {
+                                fetchInitialBoardGame(token);
+                            }}
+                        >
                             Start new game
                         </Button>
                     </div>
                 </Box>
             </Container>
         </ThemeProvider>
-    )
-}
+    );
+};
+
 
 const ReduxMainPage = connect(mainPageMapStateToProps, mainPageMapDispatchToProps)(MainPageComponent);
 const store = createStore(mainPageReducer);
