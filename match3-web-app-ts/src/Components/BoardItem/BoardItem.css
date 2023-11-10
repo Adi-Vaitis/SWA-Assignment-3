@@ -1,0 +1,10 @@
+.board-item-container {
+    border: 1px solid black;
+    margin-bottom: 0.5rem;
+}
+
+.board-item-container:hover {
+    border: 1px solid red;
+    transition: border 0.5s;
+    cursor: pointer;
+}
