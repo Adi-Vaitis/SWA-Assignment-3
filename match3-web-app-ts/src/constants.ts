@@ -1,3 +1,5 @@
+import {notification} from "antd";
+
 export const handleMenuRouting = (key: string, navigate: (path: string) => void) => {
     switch (key) {
         case 'logout':
@@ -10,3 +12,5 @@ export const handleMenuRouting = (key: string, navigate: (path: string) => void)
             navigate(`/${key}`);
     }
 };
+
+// notifications
