@@ -1,7 +1,7 @@
 import {Layout, Menu, theme} from "antd";
 import {Content, Header} from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
-import {HomeOutlined, LogoutOutlined, UserOutlined} from '@ant-design/icons';
+import {HomeOutlined, LogoutOutlined, UserOutlined, PlayCircleOutlined} from '@ant-design/icons';
 import React, {useState} from "react";
 import {Outlet, useNavigate} from "react-router-dom";
 import {MenuProps} from "antd/lib";
@@ -20,6 +20,11 @@ export const LayoutComponent = ({token}: any) => {
             key: 'profile',
             icon: React.createElement(UserOutlined),
             label: 'Profile',
+        },
+        {
+            key: 'highScore',
+            icon: React.createElement(PlayCircleOutlined),
+            label: 'High Score Games',
         },
         {
             key: 'logout',
