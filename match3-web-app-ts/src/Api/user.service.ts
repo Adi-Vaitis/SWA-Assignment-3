@@ -4,7 +4,7 @@ import {Token} from "../Model/token";
 export class UserService {
     private static PATH: string = 'http://localhost:9090';
 
-    constructor() {
+    private constructor() {
     }
 
     static async login(user: User){
