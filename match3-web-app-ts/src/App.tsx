@@ -10,6 +10,7 @@ import {AuthGuard} from "./Components/AuthGuard/AuthGuard";
 import {LayoutComponent} from "./Components/Layout/LayoutComponent";
 import {FourOhFour} from "./Pages/Four-Oh-Four/Four-Oh-Four";
 import {ProfilePage} from "./Pages/Profile/ProfilePage";
+import {HighScorePage} from "./Pages/GamePages/HighScorePage/HighScorePage";
 
 const App = () => {
     const token: Token = JSON.parse(localStorage.getItem('token') as string) as Token;
@@ -37,6 +38,10 @@ const App = () => {
                   {
                       path: "/profile",
                       element: <AuthGuard token={token}><ProfilePage token={token}/></AuthGuard>
+                  },
+                  {
+                      path: "/highScore",
+                      element: <AuthGuard token={token}><HighScorePage token={token}/></AuthGuard>
                   },
                   {
                         path: "*",
