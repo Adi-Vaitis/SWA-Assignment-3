@@ -68,13 +68,13 @@ const ProfileComponent = ({token, isFetching, user, fetchUser, updateUserProfile
     )
 }
 
-const ReduxProfilePageContainer = connect(profileMapStateToProps, profileMapDispatchToProps)(ProfileComponent);
+const ReduxProfilePage = connect(profileMapStateToProps, profileMapDispatchToProps)(ProfileComponent);
 const store = createStore(profileReducer);
 
 export const ProfilePage = ({token}: any) => {
     return (
         <Provider store={store}>
-            <ReduxProfilePageContainer token={token} userId={token.userId}/>
+            <ReduxProfilePage token={token} userId={token.userId}/>
         </Provider>
     )
 }

@@ -4,7 +4,7 @@ import './App.css';
 import {LoginPage} from "./Pages/LoginPage/LoginPage";
 import {RegisterPage} from "./Pages/RegisterPage/RegisterPage";
 import {Redirect} from "./Components/Redirect/Redirect";
-import {MainPageComponent} from "./Pages/MainPage/MainPage";
+import {MainPage} from "./Pages/MainPage/MainPage";
 import {Token} from "./Model/token";
 import {AuthGuard} from "./Components/AuthGuard/AuthGuard";
 import {LayoutComponent} from "./Components/Layout/LayoutComponent";
@@ -32,7 +32,7 @@ const App = () => {
                   },
                   {
                       path: "/mainPage",
-                      element: <AuthGuard token={token}><MainPageComponent/></AuthGuard>
+                      element: <AuthGuard token={token}><MainPage token={token}/></AuthGuard>
                   },
                   {
                       path: "/profile",

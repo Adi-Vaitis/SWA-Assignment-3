@@ -3,6 +3,7 @@ import {Generator} from "./board";
 export class RandomGenerator implements Generator<string> {
     private images: string[] = [
         'bmw.png',
+        'mercedes.png',
     ]
 
     private static instance: RandomGenerator;

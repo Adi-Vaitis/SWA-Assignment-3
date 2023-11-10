@@ -10,7 +10,8 @@ export const BoardItem = (props: BoardItemProps) => {
     const getImage = () => {
         return <img style={{
             width: '100px',
-            height: '100px'
+            height: '100px',
+            objectFit: 'contain'
         }} src={require(`../../Assets/BoardImages/${props.image}`)} />;
     }
 
