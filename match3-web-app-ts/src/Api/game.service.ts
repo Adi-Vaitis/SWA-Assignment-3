@@ -72,7 +72,7 @@ export class GameService {
         var raw = JSON.stringify(gameUpdates);
 
         var requestOptions = {
-            method: 'PUT',
+            method: 'PATCH',
             headers: myHeaders,
             body: raw,
             redirect: 'follow',
