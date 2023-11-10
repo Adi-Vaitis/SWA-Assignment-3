@@ -3,7 +3,7 @@ import {BoardItem} from "../BoardItem/BoardItem";
 import * as Board from "../../Model/board";
 import {MainPageState} from "../../Pages/MainPage/MainPage.state";
 import {Game} from "../../Model/game";
-import {message} from "antd";
+import {notification} from "antd";
 
 export interface BoardComponentProps {
     game: {
@@ -32,17 +32,26 @@ export const BoardComponent = (props: BoardComponentProps) => {
     const [selectedPositionToMoveTo, setSelectedPositionToMoveTo] = React.useState<Board.Position>({row: -1, col: -1});
     const [positionToMoveAlreadySelected, setPositionToMoveAlreadySelected] = React.useState(false);
 
+    type NotificationType = 'success' | 'info' | 'warning' | 'error';
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotification = (type: NotificationType, description: string, title?: string) => {
+        api[type]({
+            message: title ? title : 'Notification',
+            description: description
+        });
+    };
 
     useEffect(() => {
-        if(props.game.movedItems) {
-            message.info('Found match! Items moved! Current score: ' + props.game.score);
+        if (props.game.movedItems) {
+            openNotification('success','Found match! Items moved! Current score: ' + props.game.score);
         }
     }, [props.game.movedItems]);
 
     useEffect(() => {
         // THIS IS CALLED TWICE
-        if(props.game.notFoundMatches) {
-            message.error(`No matches found! Try again!`);
+        if (props.game.notFoundMatches) {
+            openNotification('error',`No matches found! Try again!`);
         }
     }, [props.game.notFoundMatches]);
 
@@ -50,7 +59,7 @@ export const BoardComponent = (props: BoardComponentProps) => {
         setPreviousMoveNumber(currentMoveNumber);
         setCurrentMoveNumber(props.game.currentMoveNumber);
         if (currentMoveNumber !== previousMoveNumber) {
-            message.warning('Left moves: ' + (props.game.maxMoveNumber - props.game.currentMoveNumber));
+            openNotification('warning','Left moves: ' + (props.game.maxMoveNumber - props.game.currentMoveNumber));
         }
     }, [props.game.currentMoveNumber]);
 
@@ -76,7 +85,7 @@ export const BoardComponent = (props: BoardComponentProps) => {
             completed: props.game.completed,
             games: props.game.games,
             movedItems: props.game.movedItems,
-            notFoundMatches:props.game.notFoundMatches,
+            notFoundMatches: props.game.notFoundMatches,
         };
     }
 
@@ -88,7 +97,6 @@ export const BoardComponent = (props: BoardComponentProps) => {
             setSelectedPositionToMoveTo({row: -1, col: -1});
             setPositionToMoveAlreadySelected(false);
 
-            message.warning('Left moves: ' + (props.game.maxMoveNumber - props.game.currentMoveNumber));
             if (beforeScore !== nowScore) {
                 props.updateGame(propsToMapPageState());
             }
@@ -97,6 +105,7 @@ export const BoardComponent = (props: BoardComponentProps) => {
 
     return (
         <div>
+            {contextHolder}
             <div
                 style={{
                     display: "flex",
