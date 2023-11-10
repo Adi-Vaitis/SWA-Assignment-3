@@ -35,8 +35,8 @@ const MainPageComponent = ({
                     </Typography>
                     {game.gameId && (
                         <BoardComponent
-                            board={game.board}
-                            gameId={game.gameId}
+                            game={game}
+                            updateMoveOnBoard={updateMoveOnBoard}
                         ></BoardComponent>
                     )}
                     <div>
