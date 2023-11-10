@@ -17,6 +17,7 @@ const MainPageComponent = ({
                                game,
                                fetchInitialBoardGame,
                                updateMoveOnBoard,
+                                updateGame,
                            }: any) => {
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -37,6 +38,7 @@ const MainPageComponent = ({
                         <BoardComponent
                             game={game}
                             updateMoveOnBoard={updateMoveOnBoard}
+                            updateGame={updateGame}
                         ></BoardComponent>
                     )}
                     <div>

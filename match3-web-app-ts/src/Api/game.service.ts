@@ -60,7 +60,9 @@ export class GameService {
         return fetch(apiUrl.toString(), requestOptions);
     }
 
-    static async updateGame(token: Token, gameId: number, gameUpdates: Game) {
+    static async updateGame(token: Token, gameId: number | undefined, gameUpdates: Game) {
+        if(!gameId) throw new Error('gameId is undefined');
+
         const apiUrl = new URL(`${this.API_URL}/games/${gameId}`);
         if (token) {
             apiUrl.searchParams.append('token', token.token.token);
