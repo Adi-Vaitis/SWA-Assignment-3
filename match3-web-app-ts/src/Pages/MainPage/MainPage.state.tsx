@@ -203,7 +203,6 @@ function createNewGame(dispatch: any, token: Token, currentState: MainPageState)
                 score: 0,
             }
         })
-        dispatch({})
         dispatch({type: ActionTypes.FINISHED_FETCHING});
     }).catch((error: any) => {
         console.error('Error: ' + error.message);
@@ -301,7 +300,6 @@ function endGameWithNoMovesLeft(dispatch: any, token: Token, currentState: MainP
 
 function resetNotMatchesFound(dispatch: any) {
     dispatch({type: ActionTypes.RESET_NOT_FOUND_MATCHES});
-    dispatch({type: ActionTypes.RESET_GAME});
 }
 
 function mapToGame(state: MainPageState): Game {
