@@ -15,6 +15,7 @@ import {
 } from "./HighScorePage.state";
 
 const defaultTheme = createTheme();
+
 interface HighScorePageProps {
     token: Token,
     isFetching: boolean,
@@ -22,12 +23,13 @@ interface HighScorePageProps {
     userHighScoreGames: Game[],
     fetchGames: () => void,
 }
+
 export const HighScorePageComponent = (props: HighScorePageProps) => {
 
 
-React.useEffect(() => {
+    React.useEffect(() => {
         props.fetchGames();
-},[]);
+    }, []);
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -50,10 +52,12 @@ React.useEffect(() => {
                 {
                     props.highScoreGames.map((game: Game) => {
                         return (
-                            <div key={game.id}>
+                            <div style={{
+                                display: "flex",
+                                justifyContent: "space-between"
+                            }} key={game.id}>
                                 <div>Game id: {game.id}</div>
                                 <div>Score: {game.score}</div>
-                                <div>Completed: {game.completed ? "true" : "false"}</div>
                             </div>
                         );
                     })
@@ -63,10 +67,13 @@ React.useEffect(() => {
                 {
                     props.userHighScoreGames.map((game: Game) => {
                         return (
-                            <div key={game.id}>
+                            <div style={{
+                                display: "flex",
+                                justifyContent: "space-between"
+                            }}
+                                 key={game.id}>
                                 <div>Game id: {game.id}</div>
                                 <div>Score: {game.score}</div>
-                                <div>Completed: {game.completed ? "true" : "false"}</div>
                             </div>
                         );
                     })

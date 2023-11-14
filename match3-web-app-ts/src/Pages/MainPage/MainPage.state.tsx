@@ -16,13 +16,15 @@ export interface MainPageState {
     games: Game[];
     movedItems: boolean;
     notFoundMatches: boolean;
+    gameEnded: boolean;
+    gameEndedWithNoMovesLeft: boolean;
 }
 
 export const defaultMainPageState: MainPageState = {
     isFetching: false,
     score: 0,
     currentMoveNumber: 0,
-    maxMoveNumber: 40,
+    maxMoveNumber: 20,
     gameId: undefined,
     completed: false,
     // @ts-ignore
@@ -30,6 +32,8 @@ export const defaultMainPageState: MainPageState = {
     games: [],
     movedItems: false,
     notFoundMatches: false,
+    gameEnded: false,
+    gameEndedWithNoMovesLeft: false,
 }
 
 enum ActionTypes {
@@ -37,13 +41,18 @@ enum ActionTypes {
     FINISHED_FETCHING = "FINISHED_FETCHING",
     FETCH_INITIAL_BOARD_GAME = "FETCH_INITIAL_BOARD_GAME",
     UPDATE_MOVE_ON_BOARD = "UPDATE_MOVE_ON_BOARD",
-    FETCH_PREVIOUS_GAME = "FETCH_PREVIOUS_GAME",
     UPDATE_USERS_GAMES = "UPDATE_USERS_GAMES",
     FOUND_MOVE_ITEMS = "FOUND_MOVE_ITEMS",
     RESET_FOUND_MOVE_ITEMS = "RESET_FOUND_MOVE_ITEMS",
     NOT_FOUND_MATCHES = "NOT_FOUND_MATCHES",
     RESET_NOT_FOUND_MATCHES = "RESET_NOT_FOUND_MATCHES",
     INCREMENT_CURRENT_MOVE_NUMBER = "INCREMENT_CURRENT_MOVE_NUMBER",
+    END_CURRENT_GAME = "END_CURRENT_GAME",
+    RESET_END_CURRENT_GAME = "RESET_END_CURRENT_GAME",
+    UPDATE_SCORE_GAME = "UPDATE_SCORE_GAME",
+    END_GAME_WITH_NO_MOVES_LEFT = "END_GAME_WITH_NO_MOVES_LEFT",
+    RESET_END_GAME_WITH_NO_MOVES_LEFT = "RESET_END_GAME_WITH_NO_MOVES_LEFT",
+    RESET_GAME = "RESET_GAME",
 }
 
 export const mainPageReducer = function (state: MainPageState = defaultMainPageState, action: any) {
@@ -73,15 +82,6 @@ export const mainPageReducer = function (state: MainPageState = defaultMainPageS
                 board: action.payload.board,
                 score: action.payload.score,
                 completed: action.payload.completed,
-            };
-        case ActionTypes.FETCH_PREVIOUS_GAME:
-            return {
-                ...state,
-                gameId: action.payload.gameId,
-                board: action.payload.board,
-                score: action.payload.score,
-                completed: action.payload.completed,
-                currentMoveNumber: action.payload.currentMoveNumber,
             };
         case ActionTypes.FOUND_MOVE_ITEMS:
             return {
@@ -113,6 +113,36 @@ export const mainPageReducer = function (state: MainPageState = defaultMainPageS
                 ...state,
                 notFoundMatches: false,
             }
+        case ActionTypes.END_CURRENT_GAME:
+            return {
+                ...state,
+                gameEnded: true,
+            }
+        case ActionTypes.RESET_END_CURRENT_GAME:
+            return {
+                ...state,
+                gameEnded: false,
+            }
+        case ActionTypes.UPDATE_SCORE_GAME:
+            return {
+                ...state,
+                score: action.payload.score,
+            }
+        case ActionTypes.END_GAME_WITH_NO_MOVES_LEFT:
+            return {
+                ...state,
+                gameEndedWithNoMovesLeft: true,
+            }
+        case ActionTypes.RESET_END_GAME_WITH_NO_MOVES_LEFT:
+            return {
+                ...state,
+                gameEndedWithNoMovesLeft: false,
+            }
+        case ActionTypes.RESET_GAME:
+            return {
+                ...defaultMainPageState,
+                gameEndedWithNoMovesLeft: state.gameEndedWithNoMovesLeft,
+            }
         default:
             return state;
     }
@@ -131,14 +161,27 @@ export const mainPageMapStateToProps = function (state: MainPageState) {
             games: state.games,
             movedItems: state.movedItems,
             notFoundMatches: state.notFoundMatches,
+            gameEnded: state.gameEnded,
+            gameEndedWithNoMovesLeft: state.gameEndedWithNoMovesLeft,
         }
     }
 }
 
 // functions that displays actions
-function fetchInitialBoardGame(dispatch: any, token: Token) {
+function fetchInitialBoardGame(dispatch: any, token: Token, currentState: MainPageState) {
     dispatch({type: ActionTypes.FETCHING});
+    if (currentState.gameId) {
+        updateGame(dispatch, token, currentState);
+    }
+    createNewGame(dispatch, token, currentState);
+}
+
+function createNewGame(dispatch: any, token: Token, currentState: MainPageState) {
     let game: Game;
+    dispatch({type: ActionTypes.FETCHING});
+    if(currentState.gameEndedWithNoMovesLeft) {
+        dispatch({type: ActionTypes.RESET_END_GAME_WITH_NO_MOVES_LEFT});
+    }
     GameService.createGame(token).then(
         response => {
             if (!response.ok) {
@@ -155,6 +198,12 @@ function fetchInitialBoardGame(dispatch: any, token: Token) {
                 gameId: game.id,
             }
         });
+        dispatch({
+            type: ActionTypes.UPDATE_SCORE_GAME, payload: {
+                score: 0,
+            }
+        })
+        dispatch({})
         dispatch({type: ActionTypes.FINISHED_FETCHING});
     }).catch((error: any) => {
         console.error('Error: ' + error.message);
@@ -181,10 +230,8 @@ function updateMoveOnBoard(dispatch: any, token: Token, selectedPosition: Board.
                     completed: false,
                 }
             });
-        }
-        else {
+        } else {
             dispatch({type: ActionTypes.NOT_FOUND_MATCHES});
-            dispatch({type: ActionTypes.RESET_NOT_FOUND_MATCHES});
         }
         dispatch({type: ActionTypes.FINISHED_FETCHING});
     } catch (error: any) {
@@ -211,6 +258,52 @@ function updateGame(dispatch: any, token: Token, currentState: MainPageState) {
     });
 }
 
+function endGame(dispatch: any, token: Token, currentState: MainPageState) {
+    let updatedState = {
+        ...currentState,
+        completed: true,
+    }
+    dispatch({type: ActionTypes.FETCHING});
+    dispatch({type: ActionTypes.END_CURRENT_GAME});
+    GameService.updateGame(token, currentState.gameId, mapToGame(updatedState)).then(
+        response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            dispatch({type: ActionTypes.FINISHED_FETCHING});
+            dispatch({type: ActionTypes.RESET_END_CURRENT_GAME});
+        }).catch((error: any) => {
+        alert('Error: ' + error.message);
+        dispatch({type: ActionTypes.FINISHED_FETCHING});
+        dispatch({type: ActionTypes.RESET_END_CURRENT_GAME});
+    });
+    createNewGame(dispatch, token, currentState);
+}
+
+function endGameWithNoMovesLeft(dispatch: any, token: Token, currentState: MainPageState) {
+    dispatch({type: ActionTypes.END_GAME_WITH_NO_MOVES_LEFT});
+    let updatedState = {
+        ...currentState,
+        completed: true,
+    }
+    GameService.updateGame(token, currentState.gameId, mapToGame(updatedState)).then(
+        response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            dispatch({type: ActionTypes.FINISHED_FETCHING});
+            dispatch({type: ActionTypes.RESET_GAME});
+        }).catch((error: any) => {
+        alert('Error: ' + error.message);
+        dispatch({type: ActionTypes.RESET_END_CURRENT_GAME});
+    });
+}
+
+function resetNotMatchesFound(dispatch: any) {
+    dispatch({type: ActionTypes.RESET_NOT_FOUND_MATCHES});
+    dispatch({type: ActionTypes.RESET_GAME});
+}
+
 function mapToGame(state: MainPageState): Game {
     return {
         id: -1,
@@ -224,8 +317,11 @@ function mapToGame(state: MainPageState): Game {
 
 export const mainPageMapDispatchToProps = function (dispatch: any, token: Token) {
     return {
-        fetchInitialBoardGame: () => fetchInitialBoardGame(dispatch, token),
+        fetchInitialBoardGame: (currentState: MainPageState) => fetchInitialBoardGame(dispatch, token, currentState),
         updateMoveOnBoard: (selectedPosition: Board.Position, newPosition: Board.Position, currentState: MainPageState) => updateMoveOnBoard(dispatch, token, selectedPosition, newPosition, currentState),
         updateGame: (currentState: MainPageState) => updateGame(dispatch, token, currentState),
+        endGame: (currentState: MainPageState) => endGame(dispatch, token, currentState),
+        resetNotMatchesFound: () => resetNotMatchesFound(dispatch),
+        endGameWithNoMovesLeft: (currentState: MainPageState) => endGameWithNoMovesLeft(dispatch, token, currentState),
     }
 }

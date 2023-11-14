@@ -13,12 +13,32 @@ import {BoardComponent} from "../../Components/Board/BoardComponent";
 const defaultTheme = createTheme();
 
 const MainPageComponent = ({
-                               token,
                                game,
                                fetchInitialBoardGame,
                                updateMoveOnBoard,
-                                updateGame,
+                               updateGame,
+                               endGame,
+                               resetNotMatchesFound,
+                               endGameWithNoMovesLeft,
                            }: any) => {
+
+    function propsToMapPageState() {
+        return {
+            isFetching: game.isFetching,
+            gameId: game.gameId,
+            board: game.board,
+            score: game.score,
+            maxMoveNumber: game.maxMoveNumber,
+            currentMoveNumber: game.currentMoveNumber,
+            completed: game.completed,
+            games: game.games,
+            movedItems: game.movedItems,
+            notFoundMatches: game.notFoundMatches,
+            gameEnded: game.gameEnded,
+            gameEndedWithNoMovesLeft: game.gameEndedWithNoMovesLeft,
+        };
+    }
+
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
@@ -34,21 +54,39 @@ const MainPageComponent = ({
                     <Typography component="h1" variant="h5">
                         Main Page
                     </Typography>
+                    {game.gameEndedWithNoMovesLeft && (
+                    <Typography component="h1" variant="h5">
+                        Your game has ended because there were no moves.
+                    </Typography>
+                    )}
                     {game.gameId && (
                         <BoardComponent
                             game={game}
                             updateMoveOnBoard={updateMoveOnBoard}
                             updateGame={updateGame}
+                            resetNotMatchesFound={resetNotMatchesFound}
+                            endGameWithNoMovesLeft={endGameWithNoMovesLeft}
                         ></BoardComponent>
                     )}
                     <div>
-                        <Button
-                            onClick={() => {
-                                fetchInitialBoardGame(token);
-                            }}
-                        >
-                            Start new game
-                        </Button>
+                        {!game.gameId && (
+                            <Button
+                                onClick={() => {
+                                    fetchInitialBoardGame(propsToMapPageState());
+                                }}
+                            >
+                                Start new game
+                            </Button>
+                        )}
+                        {(game.gameId && !game.gameEnded) && (
+                            <Button
+                                onClick={() => {
+                                    endGame(propsToMapPageState());
+                                }}
+                            >
+                                End current game
+                            </Button>
+                        )}
                     </div>
                 </Box>
             </Container>

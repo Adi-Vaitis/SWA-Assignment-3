@@ -17,14 +17,19 @@ export interface BoardComponentProps {
         games: Game[],
         movedItems: boolean,
         notFoundMatches: boolean;
+        gameEnded: boolean;
+        gameEndedWithNoMovesLeft: boolean;
     }
     updateMoveOnBoard: (selectedPosition: Board.Position, newPosition: Board.Position, currentState: MainPageState) => void;
     updateGame: (currentState: MainPageState) => void;
+    resetNotMatchesFound: () => void;
+    endGameWithNoMovesLeft: (currentState: MainPageState) => void;
 }
 
 export const BoardComponent = (props: BoardComponentProps) => {
     const [game, setGame] = useState(props.game);
     const [beforeScore, setBeforeScore] = useState(0);
+    const [leftMoves, setLeftMoves] = useState(-1);
     const [nowScore, setNowScore] = useState(0);
     const [previousMoveNumber, setPreviousMoveNumber] = useState(0);
     const [currentMoveNumber, setCurrentMoveNumber] = useState(0);
@@ -43,7 +48,13 @@ export const BoardComponent = (props: BoardComponentProps) => {
     };
 
     useEffect(() => {
-        if (props.game.movedItems) {
+        if(props.game.gameEnded) {
+            openNotification('success', `Game ended! Your score: ${props.game.score}. A new game will start.`);
+        }
+    }, [props.game.gameEnded])
+
+    useEffect(() => {
+        if (props.game.movedItems && props.game.score !== 0) {
             openNotification('success', 'Found match! Items moved! Current score: ' + props.game.score);
         }
     }, [props.game.movedItems, props.game.score]);
@@ -51,16 +62,25 @@ export const BoardComponent = (props: BoardComponentProps) => {
     useEffect(() => {
         if (props.game.notFoundMatches) {
             openNotification('error', `No matches found! Try again!`);
+            props.resetNotMatchesFound();
         }
     }, [props.game.notFoundMatches]);
 
     useEffect(() => {
+        let currentLeftMoves = props.game.maxMoveNumber - props.game.currentMoveNumber;
+        setLeftMoves(currentLeftMoves);
         setPreviousMoveNumber(currentMoveNumber);
         setCurrentMoveNumber(props.game.currentMoveNumber);
         if (currentMoveNumber !== previousMoveNumber) {
-            openNotification('warning', 'Left moves: ' + (props.game.maxMoveNumber - props.game.currentMoveNumber));
+            openNotification('warning', 'Left moves: ' + currentLeftMoves);
         }
     }, [props.game.currentMoveNumber]);
+
+    useEffect(() => {
+        if (leftMoves == 0) {
+            props.endGameWithNoMovesLeft(propsToMapPageState());
+        }
+    }, [leftMoves]);
 
     useEffect(() => {
         setBeforeScore(game.score);
@@ -84,6 +104,8 @@ export const BoardComponent = (props: BoardComponentProps) => {
             games: props.game.games,
             movedItems: props.game.movedItems,
             notFoundMatches: props.game.notFoundMatches,
+            gameEnded: props.game.gameEnded,
+            gameEndedWithNoMovesLeft: props.game.gameEndedWithNoMovesLeft,
         };
     }
 
@@ -109,6 +131,15 @@ export const BoardComponent = (props: BoardComponentProps) => {
     return (
         <div>
             {contextHolder}
+            <div style={{
+                display: "flex",
+                justifyContent: "space-between"
+            }
+            }>
+               <h3> Current score: {nowScore}</h3>
+                <h3> Current game ID: {props.game.gameId}</h3>
+                <h3> Left moves: {leftMoves}</h3>
+            </div>
             <div
                 style={{
                     display: "flex",
