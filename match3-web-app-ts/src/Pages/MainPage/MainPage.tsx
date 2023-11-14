@@ -13,11 +13,12 @@ import {BoardComponent} from "../../Components/Board/BoardComponent";
 const defaultTheme = createTheme();
 
 const MainPageComponent = ({
-                               token,
                                game,
                                fetchInitialBoardGame,
                                updateMoveOnBoard,
-                                updateGame,
+                               updateGame,
+                               endGame,
+                               resetNotMatchesFound,
                            }: any) => {
 
     function propsToMapPageState() {
@@ -32,6 +33,7 @@ const MainPageComponent = ({
             games: game.games,
             movedItems: game.movedItems,
             notFoundMatches: game.notFoundMatches,
+            gameEnded: game.gameEnded,
         };
     }
 
@@ -55,6 +57,7 @@ const MainPageComponent = ({
                             game={game}
                             updateMoveOnBoard={updateMoveOnBoard}
                             updateGame={updateGame}
+                            resetNotMatchesFound={resetNotMatchesFound}
                         ></BoardComponent>
                     )}
                     <div>
@@ -65,6 +68,15 @@ const MainPageComponent = ({
                         >
                             Start new game
                         </Button>
+                        {game.gameId && (
+                            <Button
+                                onClick={() => {
+                                    endGame(propsToMapPageState());
+                                }}
+                            >
+                                End current game
+                            </Button>
+                        )}
                     </div>
                 </Box>
             </Container>

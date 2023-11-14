@@ -17,9 +17,11 @@ export interface BoardComponentProps {
         games: Game[],
         movedItems: boolean,
         notFoundMatches: boolean;
+        gameEnded: boolean;
     }
     updateMoveOnBoard: (selectedPosition: Board.Position, newPosition: Board.Position, currentState: MainPageState) => void;
     updateGame: (currentState: MainPageState) => void;
+    resetNotMatchesFound: () => void;
 }
 
 export const BoardComponent = (props: BoardComponentProps) => {
@@ -43,6 +45,12 @@ export const BoardComponent = (props: BoardComponentProps) => {
     };
 
     useEffect(() => {
+        if(props.game.gameEnded) {
+            openNotification('success', `Game ended! Your score: ${props.game.score}. A new game will start.`);
+        }
+    }, [props.game.gameEnded])
+
+    useEffect(() => {
         if (props.game.movedItems) {
             openNotification('success', 'Found match! Items moved! Current score: ' + props.game.score);
         }
@@ -51,6 +59,7 @@ export const BoardComponent = (props: BoardComponentProps) => {
     useEffect(() => {
         if (props.game.notFoundMatches) {
             openNotification('error', `No matches found! Try again!`);
+            props.resetNotMatchesFound();
         }
     }, [props.game.notFoundMatches]);
 
@@ -84,6 +93,7 @@ export const BoardComponent = (props: BoardComponentProps) => {
             games: props.game.games,
             movedItems: props.game.movedItems,
             notFoundMatches: props.game.notFoundMatches,
+            gameEnded: props.game.gameEnded,
         };
     }
 
