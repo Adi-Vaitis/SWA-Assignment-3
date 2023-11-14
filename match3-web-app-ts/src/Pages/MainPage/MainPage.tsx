@@ -19,6 +19,22 @@ const MainPageComponent = ({
                                updateMoveOnBoard,
                                 updateGame,
                            }: any) => {
+
+    function propsToMapPageState() {
+        return {
+            isFetching: game.isFetching,
+            gameId: game.gameId,
+            board: game.board,
+            score: game.score,
+            maxMoveNumber: game.maxMoveNumber,
+            currentMoveNumber: game.currentMoveNumber,
+            completed: game.completed,
+            games: game.games,
+            movedItems: game.movedItems,
+            notFoundMatches: game.notFoundMatches,
+        };
+    }
+
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
@@ -44,7 +60,7 @@ const MainPageComponent = ({
                     <div>
                         <Button
                             onClick={() => {
-                                fetchInitialBoardGame(token);
+                                fetchInitialBoardGame(propsToMapPageState());
                             }}
                         >
                             Start new game

@@ -136,8 +136,15 @@ export const mainPageMapStateToProps = function (state: MainPageState) {
 }
 
 // functions that displays actions
-function fetchInitialBoardGame(dispatch: any, token: Token) {
+function fetchInitialBoardGame(dispatch: any, token: Token, currentState: MainPageState) {
     dispatch({type: ActionTypes.FETCHING});
+    if(currentState.gameId) {
+        updateGame(dispatch, token, currentState);
+    }
+    createNewGame(dispatch, token);
+}
+
+function createNewGame(dispatch: any, token: Token) {
     let game: Game;
     GameService.createGame(token).then(
         response => {
@@ -224,7 +231,7 @@ function mapToGame(state: MainPageState): Game {
 
 export const mainPageMapDispatchToProps = function (dispatch: any, token: Token) {
     return {
-        fetchInitialBoardGame: () => fetchInitialBoardGame(dispatch, token),
+        fetchInitialBoardGame: (currentState: MainPageState) => fetchInitialBoardGame(dispatch, token, currentState),
         updateMoveOnBoard: (selectedPosition: Board.Position, newPosition: Board.Position, currentState: MainPageState) => updateMoveOnBoard(dispatch, token, selectedPosition, newPosition, currentState),
         updateGame: (currentState: MainPageState) => updateGame(dispatch, token, currentState),
     }
