@@ -24,7 +24,7 @@ export const defaultMainPageState: MainPageState = {
     isFetching: false,
     score: 0,
     currentMoveNumber: 0,
-    maxMoveNumber: 1,
+    maxMoveNumber: 20,
     gameId: undefined,
     completed: false,
     // @ts-ignore
