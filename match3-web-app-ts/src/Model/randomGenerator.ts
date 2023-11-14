@@ -4,6 +4,10 @@ export class RandomGenerator implements Generator<string> {
     private images: string[] = [
         'bmw.png',
         'mercedes.png',
+        'mazda.png',
+        'peugeot.png',
+        'renault.png',
+        'toyota.png',
     ]
 
     private static instance: RandomGenerator;

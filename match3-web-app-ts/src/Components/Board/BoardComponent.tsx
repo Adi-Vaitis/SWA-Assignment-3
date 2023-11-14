@@ -44,14 +44,13 @@ export const BoardComponent = (props: BoardComponentProps) => {
 
     useEffect(() => {
         if (props.game.movedItems) {
-            openNotification('success','Found match! Items moved! Current score: ' + props.game.score);
+            openNotification('success', 'Found match! Items moved! Current score: ' + props.game.score);
         }
-    }, [props.game.movedItems]);
+    }, [props.game.movedItems, props.game.score]);
 
     useEffect(() => {
-        // THIS IS CALLED TWICE
         if (props.game.notFoundMatches) {
-            openNotification('error',`No matches found! Try again!`);
+            openNotification('error', `No matches found! Try again!`);
         }
     }, [props.game.notFoundMatches]);
 
@@ -59,7 +58,7 @@ export const BoardComponent = (props: BoardComponentProps) => {
         setPreviousMoveNumber(currentMoveNumber);
         setCurrentMoveNumber(props.game.currentMoveNumber);
         if (currentMoveNumber !== previousMoveNumber) {
-            openNotification('warning','Left moves: ' + (props.game.maxMoveNumber - props.game.currentMoveNumber));
+            openNotification('warning', 'Left moves: ' + (props.game.maxMoveNumber - props.game.currentMoveNumber));
         }
     }, [props.game.currentMoveNumber]);
 
@@ -67,8 +66,7 @@ export const BoardComponent = (props: BoardComponentProps) => {
         setBeforeScore(game.score);
         setGame(props.game);
         setNowScore(props.game.score);
-        // TODO  check if the current move number exceeds
-    }, [props.game]);
+    }, [props.game.score]);
 
     function positionIsNotEqualWithDefaultValues(position: Board.Position) {
         return position.col !== -1 && position.row !== -1;
@@ -89,17 +87,22 @@ export const BoardComponent = (props: BoardComponentProps) => {
         };
     }
 
-    // TODO styling when those are selected
-    function makeMove() {
-        if (positionIsNotEqualWithDefaultValues(selectedPositionToMove) && positionIsNotEqualWithDefaultValues(selectedPositionToMoveTo)) {
-            props.updateMoveOnBoard(selectedPositionToMove, selectedPositionToMoveTo, propsToMapPageState());
-            setSelectedPositionToMove({row: -1, col: -1});
-            setSelectedPositionToMoveTo({row: -1, col: -1});
-            setPositionToMoveAlreadySelected(false);
+    function makeMove(selectedPositionToMove: Board.Position, selectedPositionToMoveTo: Board.Position) {
+        const { row: fromRow, col: fromCol } = selectedPositionToMove;
+        const { row: toRow, col: toCol } = selectedPositionToMoveTo;
 
-            if (beforeScore !== nowScore) {
-                props.updateGame(propsToMapPageState());
-            }
+        if (
+            positionIsNotEqualWithDefaultValues(selectedPositionToMove) &&
+            positionIsNotEqualWithDefaultValues(selectedPositionToMoveTo)
+        ) {
+            props.updateMoveOnBoard(selectedPositionToMove, selectedPositionToMoveTo, propsToMapPageState());
+            setSelectedPositionToMove({ row: -1, col: -1 });
+            setSelectedPositionToMoveTo({ row: -1, col: -1 });
+            setPositionToMoveAlreadySelected(false);
+        }
+
+        if (beforeScore !== nowScore) {
+            props.updateGame(propsToMapPageState());
         }
     }
 
@@ -122,22 +125,30 @@ export const BoardComponent = (props: BoardComponentProps) => {
                         key={rowIndex}
                     >
                         {row.map((col: any, colIndex: number) => (
-                            <span key={colIndex} onClick={() => {
-                                if (!positionToMoveAlreadySelected) {
-                                    setSelectedPositionToMove({row: rowIndex, col: colIndex});
-                                    setPositionToMoveAlreadySelected(true);
-                                } else {
-                                    setSelectedPositionToMoveTo({row: rowIndex, col: colIndex});
-                                    makeMove();
+                            <BoardItem
+                                key={colIndex}
+                                image={col}
+                                isSelected={
+                                    selectedPositionToMove.row === rowIndex &&
+                                    selectedPositionToMove.col === colIndex
                                 }
-                            }}>
-                                <BoardItem
-                                    image={col}/>
-                            </span>
+                                onClick={() => handleBoardItemClick(rowIndex, colIndex)}
+                            />
                         ))}
                     </div>
                 ))}
             </div>
         </div>
     );
+
+    function handleBoardItemClick(rowIndex: number, colIndex: number) {
+        const position = {row: rowIndex, col: colIndex} satisfies Board.Position;
+        if (!positionToMoveAlreadySelected) {
+            setSelectedPositionToMove(position);
+            setPositionToMoveAlreadySelected(true);
+        } else {
+            setSelectedPositionToMoveTo(position);
+            makeMove(selectedPositionToMove, position);
+        }
+    }
 };
