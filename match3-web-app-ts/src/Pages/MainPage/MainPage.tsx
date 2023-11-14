@@ -19,6 +19,7 @@ const MainPageComponent = ({
                                updateGame,
                                endGame,
                                resetNotMatchesFound,
+                               endGameWithNoMovesLeft,
                            }: any) => {
 
     function propsToMapPageState() {
@@ -34,6 +35,7 @@ const MainPageComponent = ({
             movedItems: game.movedItems,
             notFoundMatches: game.notFoundMatches,
             gameEnded: game.gameEnded,
+            gameEndedWithNoMovesLeft: game.gameEndedWithNoMovesLeft,
         };
     }
 
@@ -52,12 +54,18 @@ const MainPageComponent = ({
                     <Typography component="h1" variant="h5">
                         Main Page
                     </Typography>
+                    {game.gameEndedWithNoMovesLeft && (
+                    <Typography component="h1" variant="h5">
+                        Your game has ended because there were no moves.
+                    </Typography>
+                    )}
                     {game.gameId && (
                         <BoardComponent
                             game={game}
                             updateMoveOnBoard={updateMoveOnBoard}
                             updateGame={updateGame}
                             resetNotMatchesFound={resetNotMatchesFound}
+                            endGameWithNoMovesLeft={endGameWithNoMovesLeft}
                         ></BoardComponent>
                     )}
                     <div>

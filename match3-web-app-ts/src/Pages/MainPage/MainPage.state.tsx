@@ -17,13 +17,14 @@ export interface MainPageState {
     movedItems: boolean;
     notFoundMatches: boolean;
     gameEnded: boolean;
+    gameEndedWithNoMovesLeft: boolean;
 }
 
 export const defaultMainPageState: MainPageState = {
     isFetching: false,
     score: 0,
     currentMoveNumber: 0,
-    maxMoveNumber: 40,
+    maxMoveNumber: 1,
     gameId: undefined,
     completed: false,
     // @ts-ignore
@@ -32,6 +33,7 @@ export const defaultMainPageState: MainPageState = {
     movedItems: false,
     notFoundMatches: false,
     gameEnded: false,
+    gameEndedWithNoMovesLeft: false,
 }
 
 enum ActionTypes {
@@ -48,6 +50,9 @@ enum ActionTypes {
     END_CURRENT_GAME = "END_CURRENT_GAME",
     RESET_END_CURRENT_GAME = "RESET_END_CURRENT_GAME",
     UPDATE_SCORE_GAME = "UPDATE_SCORE_GAME",
+    END_GAME_WITH_NO_MOVES_LEFT = "END_GAME_WITH_NO_MOVES_LEFT",
+    RESET_END_GAME_WITH_NO_MOVES_LEFT = "RESET_END_GAME_WITH_NO_MOVES_LEFT",
+    RESET_GAME = "RESET_GAME",
 }
 
 export const mainPageReducer = function (state: MainPageState = defaultMainPageState, action: any) {
@@ -123,6 +128,21 @@ export const mainPageReducer = function (state: MainPageState = defaultMainPageS
                 ...state,
                 score: action.payload.score,
             }
+        case ActionTypes.END_GAME_WITH_NO_MOVES_LEFT:
+            return {
+                ...state,
+                gameEndedWithNoMovesLeft: true,
+            }
+        case ActionTypes.RESET_END_GAME_WITH_NO_MOVES_LEFT:
+            return {
+                ...state,
+                gameEndedWithNoMovesLeft: false,
+            }
+        case ActionTypes.RESET_GAME:
+            return {
+                ...defaultMainPageState,
+                gameEndedWithNoMovesLeft: state.gameEndedWithNoMovesLeft,
+            }
         default:
             return state;
     }
@@ -142,6 +162,7 @@ export const mainPageMapStateToProps = function (state: MainPageState) {
             movedItems: state.movedItems,
             notFoundMatches: state.notFoundMatches,
             gameEnded: state.gameEnded,
+            gameEndedWithNoMovesLeft: state.gameEndedWithNoMovesLeft,
         }
     }
 }
@@ -149,14 +170,18 @@ export const mainPageMapStateToProps = function (state: MainPageState) {
 // functions that displays actions
 function fetchInitialBoardGame(dispatch: any, token: Token, currentState: MainPageState) {
     dispatch({type: ActionTypes.FETCHING});
-    if(currentState.gameId) {
+    if (currentState.gameId) {
         updateGame(dispatch, token, currentState);
     }
-    createNewGame(dispatch, token);
+    createNewGame(dispatch, token, currentState);
 }
 
-function createNewGame(dispatch: any, token: Token) {
+function createNewGame(dispatch: any, token: Token, currentState: MainPageState) {
     let game: Game;
+    dispatch({type: ActionTypes.FETCHING});
+    if(currentState.gameEndedWithNoMovesLeft) {
+        dispatch({type: ActionTypes.RESET_END_GAME_WITH_NO_MOVES_LEFT});
+    }
     GameService.createGame(token).then(
         response => {
             if (!response.ok) {
@@ -205,8 +230,7 @@ function updateMoveOnBoard(dispatch: any, token: Token, selectedPosition: Board.
                     completed: false,
                 }
             });
-        }
-        else {
+        } else {
             dispatch({type: ActionTypes.NOT_FOUND_MATCHES});
         }
         dispatch({type: ActionTypes.FINISHED_FETCHING});
@@ -253,11 +277,31 @@ function endGame(dispatch: any, token: Token, currentState: MainPageState) {
         dispatch({type: ActionTypes.FINISHED_FETCHING});
         dispatch({type: ActionTypes.RESET_END_CURRENT_GAME});
     });
-    createNewGame(dispatch, token);
+    createNewGame(dispatch, token, currentState);
+}
+
+function endGameWithNoMovesLeft(dispatch: any, token: Token, currentState: MainPageState) {
+    dispatch({type: ActionTypes.END_GAME_WITH_NO_MOVES_LEFT});
+    let updatedState = {
+        ...currentState,
+        completed: true,
+    }
+    GameService.updateGame(token, currentState.gameId, mapToGame(updatedState)).then(
+        response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            dispatch({type: ActionTypes.FINISHED_FETCHING});
+            dispatch({type: ActionTypes.RESET_GAME});
+        }).catch((error: any) => {
+        alert('Error: ' + error.message);
+        dispatch({type: ActionTypes.RESET_END_CURRENT_GAME});
+    });
 }
 
 function resetNotMatchesFound(dispatch: any) {
     dispatch({type: ActionTypes.RESET_NOT_FOUND_MATCHES});
+    dispatch({type: ActionTypes.RESET_GAME});
 }
 
 function mapToGame(state: MainPageState): Game {
@@ -278,5 +322,6 @@ export const mainPageMapDispatchToProps = function (dispatch: any, token: Token)
         updateGame: (currentState: MainPageState) => updateGame(dispatch, token, currentState),
         endGame: (currentState: MainPageState) => endGame(dispatch, token, currentState),
         resetNotMatchesFound: () => resetNotMatchesFound(dispatch),
+        endGameWithNoMovesLeft: (currentState: MainPageState) => endGameWithNoMovesLeft(dispatch, token, currentState),
     }
 }
