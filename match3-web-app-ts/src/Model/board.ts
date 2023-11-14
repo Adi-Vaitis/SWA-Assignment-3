@@ -171,86 +171,88 @@ export function move<T>(
 }
 
 function handleCascadingMatches<T>(moveResult: MoveResult<T>): MoveResult<T> {
-    let initialMoveResult = moveResult;
-    if (moveResult.board.generator === undefined) {
-        return moveResult;
-    }
-    for (let row = 0; row < moveResult.board.height; row++) {
-        let rowMatch = checkHorizontalMatch(
-            moveResult.board,
-            { row: row, col: 0 },
-            piece(moveResult.board, { row: row, col: 0 })
-        );
+    let hasCascadingMatches = true;
 
-        if (rowMatch.length >= 3) {
-            let pieceMatched = piece(moveResult.board, rowMatch[0]);
-            moveResult = {
-                ...moveResult,
-                effects: [
-                    ...moveResult.effects,
-                    {
-                        kind: "Match",
-                        match: {
-                            matched: pieceMatched,
-                            positions: rowMatch,
+    while (hasCascadingMatches) {
+        hasCascadingMatches = false;
+
+        for (let row = 0; row < moveResult.board.height; row++) {
+            let rowMatch = checkHorizontalMatch(
+                moveResult.board,
+                { row: row, col: 0 },
+                piece(moveResult.board, { row: row, col: 0 })
+            );
+
+            if (rowMatch.length >= 3) {
+                let pieceMatched = piece(moveResult.board, rowMatch[0]);
+                moveResult = {
+                    ...moveResult,
+                    effects: [
+                        ...moveResult.effects,
+                        {
+                            kind: "Match",
+                            match: {
+                                matched: pieceMatched,
+                                positions: rowMatch,
+                            },
                         },
-                    },
-                ],
-            };
-            moveResult = {
-                effects: [
-                    ...moveResult.effects,
-                    {
-                        kind: "Refill",
-                    },
-                ],
-                board: refillBoard(
-                    moveResult.board.generator,
-                    moveResult.board,
-                    rowMatch
-                ),
-            };
-        } else {
-            for (let col = 0; col < moveResult.board.width; col++) {
-                let colMatch = checkVerticalMatch(
-                    moveResult.board,
-                    { row: 0, col: col },
-                    piece(moveResult.board, { row: 0, col: col })
-                );
-                if (colMatch.length >= 3) {
-                    let pieceMatched = piece(moveResult.board, colMatch[0]);
-                    moveResult = {
-                        ...moveResult,
-                        effects: [
-                            ...moveResult.effects,
-                            {
-                                kind: "Match",
-                                match: {
-                                    matched: pieceMatched,
-                                    positions: colMatch,
+                    ],
+                };
+                moveResult = {
+                    effects: [
+                        ...moveResult.effects,
+                        {
+                            kind: "Refill",
+                        },
+                    ],
+                    board: refillBoard(
+                        moveResult.board.generator,
+                        moveResult.board,
+                        rowMatch
+                    ),
+                };
+                hasCascadingMatches = true;
+            } else {
+                for (let col = 0; col < moveResult.board.width; col++) {
+                    let colMatch = checkVerticalMatch(
+                        moveResult.board,
+                        { row: 0, col: col },
+                        piece(moveResult.board, { row: 0, col: col })
+                    );
+                    if (colMatch.length >= 3) {
+                        let pieceMatched = piece(moveResult.board, colMatch[0]);
+                        moveResult = {
+                            ...moveResult,
+                            effects: [
+                                ...moveResult.effects,
+                                {
+                                    kind: "Match",
+                                    match: {
+                                        matched: pieceMatched,
+                                        positions: colMatch,
+                                    },
                                 },
-                            },
-                        ],
-                    };
-                    moveResult = {
-                        effects: [
-                            ...moveResult.effects,
-                            {
-                                kind: "Refill",
-                            },
-                        ],
-                        board: refillBoard(
-                            moveResult.board.generator,
-                            moveResult.board,
-                            colMatch
-                        ),
-                    };
+                            ],
+                        };
+                        moveResult = {
+                            effects: [
+                                ...moveResult.effects,
+                                {
+                                    kind: "Refill",
+                                },
+                            ],
+                            board: refillBoard(
+                                moveResult.board.generator,
+                                moveResult.board,
+                                colMatch
+                            ),
+                        };
+                        hasCascadingMatches = true;
+                    }
                 }
             }
         }
     }
-    if (initialMoveResult === moveResult) {
-        handleCascadingMatches(moveResult);
-    }
+
     return moveResult;
 }
