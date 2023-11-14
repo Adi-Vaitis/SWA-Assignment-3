@@ -61,14 +61,16 @@ const MainPageComponent = ({
                         ></BoardComponent>
                     )}
                     <div>
-                        <Button
-                            onClick={() => {
-                                fetchInitialBoardGame(propsToMapPageState());
-                            }}
-                        >
-                            Start new game
-                        </Button>
-                        {game.gameId && (
+                        {!game.gameId && (
+                            <Button
+                                onClick={() => {
+                                    fetchInitialBoardGame(propsToMapPageState());
+                                }}
+                            >
+                                Start new game
+                            </Button>
+                        )}
+                        {(game.gameId && !game.gameEnded) && (
                             <Button
                                 onClick={() => {
                                     endGame(propsToMapPageState());

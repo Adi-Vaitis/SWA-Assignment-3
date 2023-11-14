@@ -51,7 +51,7 @@ export const BoardComponent = (props: BoardComponentProps) => {
     }, [props.game.gameEnded])
 
     useEffect(() => {
-        if (props.game.movedItems) {
+        if (props.game.movedItems && props.game.score !== 0) {
             openNotification('success', 'Found match! Items moved! Current score: ' + props.game.score);
         }
     }, [props.game.movedItems, props.game.score]);
@@ -119,6 +119,14 @@ export const BoardComponent = (props: BoardComponentProps) => {
     return (
         <div>
             {contextHolder}
+            <div style={{
+                display: "flex",
+                justifyContent: "space-between"
+            }
+            }>
+               <h3> Current score: {nowScore}</h3>
+                <h3> Current game ID: {props.game.gameId}</h3>
+            </div>
             <div
                 style={{
                     display: "flex",

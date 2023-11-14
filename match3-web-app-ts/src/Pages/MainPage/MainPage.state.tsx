@@ -39,7 +39,6 @@ enum ActionTypes {
     FINISHED_FETCHING = "FINISHED_FETCHING",
     FETCH_INITIAL_BOARD_GAME = "FETCH_INITIAL_BOARD_GAME",
     UPDATE_MOVE_ON_BOARD = "UPDATE_MOVE_ON_BOARD",
-    FETCH_PREVIOUS_GAME = "FETCH_PREVIOUS_GAME",
     UPDATE_USERS_GAMES = "UPDATE_USERS_GAMES",
     FOUND_MOVE_ITEMS = "FOUND_MOVE_ITEMS",
     RESET_FOUND_MOVE_ITEMS = "RESET_FOUND_MOVE_ITEMS",
@@ -48,6 +47,7 @@ enum ActionTypes {
     INCREMENT_CURRENT_MOVE_NUMBER = "INCREMENT_CURRENT_MOVE_NUMBER",
     END_CURRENT_GAME = "END_CURRENT_GAME",
     RESET_END_CURRENT_GAME = "RESET_END_CURRENT_GAME",
+    UPDATE_SCORE_GAME = "UPDATE_SCORE_GAME",
 }
 
 export const mainPageReducer = function (state: MainPageState = defaultMainPageState, action: any) {
@@ -77,15 +77,6 @@ export const mainPageReducer = function (state: MainPageState = defaultMainPageS
                 board: action.payload.board,
                 score: action.payload.score,
                 completed: action.payload.completed,
-            };
-        case ActionTypes.FETCH_PREVIOUS_GAME:
-            return {
-                ...state,
-                gameId: action.payload.gameId,
-                board: action.payload.board,
-                score: action.payload.score,
-                completed: action.payload.completed,
-                currentMoveNumber: action.payload.currentMoveNumber,
             };
         case ActionTypes.FOUND_MOVE_ITEMS:
             return {
@@ -127,6 +118,11 @@ export const mainPageReducer = function (state: MainPageState = defaultMainPageS
                 ...state,
                 gameEnded: false,
             }
+        case ActionTypes.UPDATE_SCORE_GAME:
+            return {
+                ...state,
+                score: action.payload.score,
+            }
         default:
             return state;
     }
@@ -145,6 +141,7 @@ export const mainPageMapStateToProps = function (state: MainPageState) {
             games: state.games,
             movedItems: state.movedItems,
             notFoundMatches: state.notFoundMatches,
+            gameEnded: state.gameEnded,
         }
     }
 }
@@ -176,6 +173,12 @@ function createNewGame(dispatch: any, token: Token) {
                 gameId: game.id,
             }
         });
+        dispatch({
+            type: ActionTypes.UPDATE_SCORE_GAME, payload: {
+                score: 0,
+            }
+        })
+        dispatch({})
         dispatch({type: ActionTypes.FINISHED_FETCHING});
     }).catch((error: any) => {
         console.error('Error: ' + error.message);
