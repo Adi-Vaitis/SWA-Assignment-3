@@ -48,6 +48,7 @@ export const profileMapStateToProps = function (state: ProfileStateModel) {
     }
 }
 
+// Compare using callbacks and promises with and without async/await
 export const updateUserProfile = async (dispatch: any, token: Token, profileUpdates: {password?: string }) => {
     dispatch({ type: ActionTypes.USER_REQUEST });
 
