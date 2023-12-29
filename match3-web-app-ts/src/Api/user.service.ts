@@ -34,7 +34,7 @@ export class UserService {
             headers: myHeaders,
             body: raw,
             redirect: 'follow'
-        } satisfies RequestInit;
+        } as RequestInit;
 
         return fetch(`${this.PATH}/users`, requestOptions);
     }
@@ -52,7 +52,7 @@ export class UserService {
             method: 'GET',
             headers: myHeaders,
             redirect: 'follow',
-        } satisfies RequestInit;
+        } as RequestInit;
 
         return fetch(apiUrl.toString(), requestOptions);
     }
@@ -76,7 +76,7 @@ export class UserService {
             headers: myHeaders,
             body: requestBody,
             redirect: 'follow',
-        } satisfies RequestInit;
+        } as RequestInit;
 
         return fetch(apiUrl.toString(), requestOptions);
     }

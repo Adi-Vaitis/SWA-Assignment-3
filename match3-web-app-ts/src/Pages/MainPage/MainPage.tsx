@@ -94,7 +94,7 @@ const MainPageComponent = ({
     );
 };
 
-
+// specifying the props mapped from the redux in the main page component's props
 const ReduxMainPage = connect(mainPageMapStateToProps, mainPageMapDispatchToProps)(MainPageComponent);
 const store = createStore(mainPageReducer);
 

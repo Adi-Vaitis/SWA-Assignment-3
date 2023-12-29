@@ -173,7 +173,7 @@ export const BoardComponent = (props: BoardComponentProps) => {
     );
 
     function handleBoardItemClick(rowIndex: number, colIndex: number) {
-        const position = {row: rowIndex, col: colIndex} satisfies Board.Position;
+        const position = {row: rowIndex, col: colIndex} as Board.Position;
         if (!positionToMoveAlreadySelected) {
             setSelectedPositionToMove(position);
             setPositionToMoveAlreadySelected(true);
