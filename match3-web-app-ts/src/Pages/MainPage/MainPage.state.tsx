@@ -310,7 +310,7 @@ function mapToGame(state: MainPageState): Game {
         score: state.score,
         completed: state.completed,
         currentMoveNumber: state.currentMoveNumber,
-    } satisfies Game;
+    } as Game;
 }
 
 export const mainPageMapDispatchToProps = function (dispatch: any, token: Token) {
